@@ -1,0 +1,28 @@
+{
+  "name": "inventory-management-system-server",
+  "version": "1.0.0",
+  "description": "inventory management system",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayoub-jouini/Inventory-Management-System-server.git"
+  },
+  "author": "Mohamed Ayoub Jouini",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ayoub-jouini/Inventory-Management-System-server/issues"
+  },
+  "homepage": "https://github.com/ayoub-jouini/Inventory-Management-System-server#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.18.2",
+    "helmet": "^6.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
