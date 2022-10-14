@@ -1,15 +1,23 @@
 const express = require("express");
 const helmet = require("helmet");
+const { ApolloServer } = require("@apollo/server");
+const { expressMiddleware } = require("@apollo/server/express4");
+const cors = require("cors");
 
 const HttpError = require("./utils/http-error");
 
 const app = express();
 
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
+
 // set security HTTP headers
 app.use(helmet());
 
 // parse json request body
-app.use(express.json());
+// app.use(express.json());
 
 //access control
 app.use((req, res, next) => {
@@ -18,12 +26,14 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST");
 
   next();
 });
 
 //graphql route
+await server.start();
+app.use("/graphql", cors(), express.json(), expressMiddleware(server));
 
 //page not found error 404
 app.use((req, res, next) => {
